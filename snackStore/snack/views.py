@@ -18,6 +18,7 @@ from django.contrib.auth import authenticate
 from .models import *
 from .serializers import *
 from datetime import datetime, timedelta
+from django.contrib.auth.models import User as AUTH_USER
 
 import json
 import ast
@@ -200,9 +201,21 @@ def user_list(request,format = None):
 		return Response(serializer.data)
 
 	elif request.method == 'POST':
-		serializer = UserSerializer(data=request.data)
+		copy_validated_data = request.data.copy()
+
+		if 'password' in request.data.keys():
+			copy_validated_data['password'] = make_password(str(request.data['password']), salt=None, hasher='sha1')
+
+		serializer = UserSerializer(data=copy_validated_data)
+
 		if serializer.is_valid():
 			serializer.save()
+
+			AUTH_USER.objects.create(	
+									username=copy_validated_data['username'],
+	                            	email = '',
+	                            	password=copy_validated_data['password']
+								)
 			return Response(serializer.data, status=status.HTTP_201_CREATED)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
