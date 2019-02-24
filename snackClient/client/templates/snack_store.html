@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{%block content%}
+<table id="dt_snacks" class="display table-dark table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Extn.</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Extn.</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </tfoot>
+</table>
+{%endblock%}
+
+{%block addExtraScript%}
+<script type="text/javascript">
+	var editor; // use a global for the submit and return data rendering in the examples
+ 	var dt_snacks= null;
+
+	$(document).ready(function() {
+		holi();
+		console.log('AAAAAAAAA');
+		$('#dt_snacks').DataTable( {
+		  //"ajax": "http://localhost:8000/api/snack/?format=json"
+		  "ajax": {
+					"url": "http://localhost:8000/api/snack/?format=json",
+					"type": "GET",
+					//"contentType": 'application/json',
+					"dataType": 'jsonp', 
+					//"data":  function( d ) { },
+				   /* "dataSrc": function ( jsonp ) {
+				    	console.log('ent');
+						
+						return json;
+					},*/
+				}
+
+		} );
+
+		function holi(){
+
+			$.ajax({
+			    url : "http://localhost:8000/api/snack/",
+			    dataType: 'json',
+			    type: "GET",
+			   success: function(response) {
+			        console.log('callback success');
+			    }
+             
+			});
+		}
+
+		 
+	
+
+	 
+	} );
+</script>
+{%endblock%}

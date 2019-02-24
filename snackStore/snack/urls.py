@@ -4,6 +4,7 @@ from snack import views
 
 urlpatterns = [
 	url(r'^login/$',views.login, name='login'),
+	url(r'^allsnacks/$', views.all_snacks,name="all-snacks"),
     url(r'^snack/$', views.snack_list,name="snack-list"),
     url(r'^snack/(?P<pk>[0-9]+)/', views.snack_detail,name="snack-detail"),
     url(r'^user/$', views.user_list,name="user-list"),

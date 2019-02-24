@@ -1,0 +1,11 @@
+bcrypt==3.1.6
+cffi==1.12.1
+Django==1.11
+django-filter==2.1.0
+django-widget-tweaks==1.4.1
+djangorestframework==3.9.1
+Markdown==3.0.1
+psycopg2==2.6.1
+pycparser==2.19
+pytz==2018.9
+six==1.12.0

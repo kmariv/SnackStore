@@ -2,12 +2,18 @@ from .models import *
 from rest_framework import serializers
 from django.contrib.auth.hashers import *
 from django.contrib.auth.models import User as AUTH_USER
+from django.forms.models import model_to_dict
 
 class SnackSerializer(serializers.HyperlinkedModelSerializer):
 	def validate(self,data):
 		if 'name' not in data.keys()== 0:
 			raise serializers.ValidationError("The snack should have a name")
 		return data
+
+	def to_representation(self, snack):
+		data = super(SnackSerializer, self).to_representation(snack)
+		
+		return  data
 
 	class Meta:
 		model = Snack

@@ -34,6 +34,13 @@ def verifyActive(userLog):
 	else:
 		return None
 
+@api_view(['POST'])
+def all_snacks(request,format=None):
+	if request.method == 'POST':
+		snack = Snack.objects.all()
+		serializer = SnackSerializer(snack, many=True)
+		return Response(serializer.data)
+
 @api_view(['GET', 'POST'])
 def snack_list(request,format = None):
 	userLog = verifyUserLog(request.session)
