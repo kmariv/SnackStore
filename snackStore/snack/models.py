@@ -7,7 +7,6 @@ from django.db import models
 class Snack(models.Model):
 	snack_id 		= models.AutoField(primary_key=True)
 	name 			= models.CharField('Name',max_length=50,default='')
-	#is_active 		= models.BooleanField('Is active', default=True) 
 	stock_quantity 	= models.PositiveSmallIntegerField('Snack', default=0)
 	price 			= models.DecimalField('Price', max_digits=5, decimal_places=2, default=0.0)
 	popularity 		= models.PositiveSmallIntegerField('Popularity', default=0)
@@ -17,7 +16,8 @@ class Snack(models.Model):
 
 class User(models.Model):
 	user_id 		= models.AutoField(primary_key=True)
-	username 		= models.CharField('Username',max_length=50,unique=True)
+	username 		= models.CharField('Username',max_length=50,unique=True,blank=False)
+	password 		= models.TextField('Password',default='')
 	name 			= models.CharField('Name',max_length=50,default='')
 	last_name 		= models.CharField('Last name',max_length=50)
 	is_admin 		= models.BooleanField('Is admin', default=False)
