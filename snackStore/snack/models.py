@@ -7,7 +7,7 @@ from django.db import models
 class Snack(models.Model):
 	snack_id 		= models.AutoField(primary_key=True)
 	name 			= models.CharField('Name',max_length=50,default='')
-	is_active 		= models.BooleanField('Is active', default=True) 
+	#is_active 		= models.BooleanField('Is active', default=True) 
 	stock_quantity 	= models.PositiveSmallIntegerField('Snack', default=0)
 	price 			= models.DecimalField('Price', max_digits=5, decimal_places=2, default=0.0)
 	popularity 		= models.PositiveSmallIntegerField('Popularity', default=0)

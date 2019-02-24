@@ -9,7 +9,7 @@ class SnackSerializer(serializers.HyperlinkedModelSerializer):
 
 	class Meta:
 		model = Snack
-		fields = ('snack_id','name','is_active','stock_quantity','price','popularity')
+		fields = ('snack_id','name','stock_quantity','price','popularity')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

@@ -43,9 +43,23 @@ def snack_detail(request, pk,format = None):
 		serializer = SnackSerializer(snack)
 		return Response(serializer.data)
 
-	elif request.method == 'PUT':
+	elif request.method == 'PUT':	
+		try: 
+			user = User.objects.get(username= request.data['username'])
+		except User.DoesNotExist:
+			return Response(status=status.HTTP_404_NOT_FOUND)
+
 		serializer = SnackSerializer(snack, data=request.data)
 		if serializer.is_valid():
+			print snack.price
+			print request.data['price']
+			if snack.price != request.data['price']:
+				SnackPriceLog.objects.create(
+											user= 	 		user	
+											,snack= 		snack
+											,old_price= 	snack.price
+											,new_price= 	request.data['price']
+											)
 			serializer.save()
 			return Response(serializer.data)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
