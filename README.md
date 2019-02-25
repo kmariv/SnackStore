@@ -1,6 +1,7 @@
 # SnackStore
 
 ** IMPORTANT:
+
 	--> You should have python 2.7.6 in your OS. 
 	--> Create an environment in Linux OS.
 
@@ -53,7 +54,7 @@
 	Python 2.7.6
 	Django 1.11
 	Django REST Framework
-	PostgreSQL 
+	PostgreSQL (PostgreSQL 9.3.12 on x86_64-unknown-linux-gnu, compiled by gcc (Ubuntu 4.8.4-2ubuntu1~14.04.1) 4.8.4, 64-bit)
 	jQuery 1.12.4
 	Datatables 1.10.19
 	Bootstrap 4
