@@ -32,6 +32,7 @@
 ** How to use:
 	
 	You can find two folders: snackClient (Front-end) and snackStore (Back-end)
+	Please, create a database called "STORE_DB" (current user postgres, current password root) but you can change it in snackStore/snackStore/settings.py
 	
 	---> You should open two terminal and execute "workon snackenv" in both. 
 	
@@ -48,12 +49,12 @@
 			3) Go to localhost:8001/client/store/
 			
 ** FRAMEWORKS/TOOLS USED:
-	- Python 2.7.6
-	- Django 1.11
-	- Django REST Framework
-	- PostgreSQL 
-	- jQuery 1.12.4
-	- Datatables 1.10.19
-	- Bootstrap 4
+	1- Python 2.7.6
+	2- Django 1.11
+	3- Django REST Framework
+	4- PostgreSQL 
+	5- jQuery 1.12.4
+	6- Datatables 1.10.19
+	7- Bootstrap 4
 	
 	
