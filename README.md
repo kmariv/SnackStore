@@ -1,7 +1,7 @@
 # SnackStore
 
-** IMPORTANT 
-	--> You should have python 2.7.6  
+** IMPORTANT:
+	--> You should have python 2.7.6 in your OS. 
 	--> Create an environment in Linux OS.
 
 ** Install the environment:
@@ -28,3 +28,32 @@
 		
 		Execute in a terminal:
 			pip install -r requirements.txt
+			
+** How to use:
+	
+	You can find two folders: snackClient (Front-end) and snackStore (Back-end)
+	
+	---> You should open two terminal and execute "workon snackenv" in both. 
+	
+	[ terminal #1 ]
+		execute:
+			1) cd snackStore
+			2) python manage.py runserver 0.0.0.0:8000
+			3) Open POSTMAN to prove the API.
+		
+	[ terminal #2 ]
+		execute:
+			1) cd snackClient
+			2) python manage.py runserver 0.0.0.0:8001
+			3) Go to localhost:8001/client/store/
+			
+** FRAMEWORKS/TOOLS USED:
+	- Python 2.7.6
+	- Django 1.11
+	- Django REST Framework
+	- PostgreSQL 
+	- jQuery 1.12.4
+	- Datatables 1.10.19
+	- Bootstrap 4
+	
+	
