@@ -1,6 +1,7 @@
-from django.conf.urls import url
+from django.conf.urls import url,include
 from rest_framework.urlpatterns import format_suffix_patterns
 from snack import views
+from .router import router
 
 urlpatterns = [
 	url(r'^login/$',views.login, name='login'),
@@ -13,6 +14,8 @@ urlpatterns = [
     url(r'^purchase/$', views.purchase_list, name="purchase-list"),
     url(r'^purchase/(?P<snack_id>[0-9]+)/', views.purchase, name="purchase"),
     url(r'^like/(?P<snack_id>[0-9]+)/', views.like_product, name="like-product"),
+    url(r'^pricelog/$', views.pricelog_list, name="pricelog-list"),
+    url('', include(router.urls)),
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns)
+#urlpatterns = format_suffix_patterns(urlpatterns)

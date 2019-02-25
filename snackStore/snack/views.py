@@ -48,6 +48,8 @@ def snack_list(request,format = None):
 
 @api_view(['POST'])
 def new_snack(request,format=None):
+	userLog = verifyUserLog(request.session)
+
 	if request.method == 'POST':
 		if verifyActive(userLog) is not None:
 			try:
@@ -92,7 +94,7 @@ def snack_detail(request, pk,format = None):
 			if user.is_admin is True:
 				serializer = SnackSerializer(snack, data=request.data)
 				if serializer.is_valid():
-					if snack.price != request.data['price']:
+					if 'price' in request.data.keys() and snack.price != request.data['price']:
 						SnackPriceLog.objects.create(
 													user= 	 		user	
 													,snack= 		snack
@@ -293,3 +295,16 @@ def check_login(request):
 		return Response(userLog)
 	else:
 		return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+@api_view(['GET'])
+def pricelog_list(request,format = None):
+	userLog = verifyUserLog(request.session)
+
+	if request.method == 'GET':
+		if verifyActive(userLog) is not None:
+			price_log = SnackPriceLog.objects.all()
+			serializer = SnackPriceLogSerializer(price_log, many=True)
+			return Response(serializer.data)
+		else:
+			return Response(status=status.HTTP_401_UNAUTHORIZED)

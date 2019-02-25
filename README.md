@@ -48,13 +48,14 @@
 			2) python manage.py runserver 0.0.0.0:8001
 			3) Go to localhost:8001/client/store/
 			
-** FRAMEWORKS/TOOLS USED:
-	1- Python 2.7.6
-	2- Django 1.11
-	3- Django REST Framework
-	4- PostgreSQL 
-	5- jQuery 1.12.4
-	6- Datatables 1.10.19
-	7- Bootstrap 4
+** Frameworks, Databases and Other tools USED:
+
+	Python 2.7.6
+	Django 1.11
+	Django REST Framework
+	PostgreSQL 
+	jQuery 1.12.4
+	Datatables 1.10.19
+	Bootstrap 4
 	
 	

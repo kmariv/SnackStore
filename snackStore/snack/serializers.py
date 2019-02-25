@@ -45,3 +45,11 @@ class SnackPopularitySerializer(serializers.ModelSerializer):
 	class Meta:
 		model = SnackPopularity
 		fields = ('user','snack','action_date')
+
+class SnackPriceLogSerializer(serializers.ModelSerializer):
+	user 	= serializers.StringRelatedField(many=False)
+	snack 	= serializers.StringRelatedField(many=False)
+
+	class Meta:
+		model = SnackPriceLog
+		fields = ('user','snack','action_date','old_price','new_price')
