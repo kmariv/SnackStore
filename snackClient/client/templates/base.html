@@ -34,6 +34,62 @@
          <script src="{% static 'js/datatables.min.js' %}"></script>       
 
         {% block addExtraScript %} {% endblock %}
+
+        <script type="text/javascript">
+
+            $(document).on('showalert', '.alert', function(event,tiempo){
+                window.setTimeout($.proxy(function() {
+                    myalert = $(this);
+                    bucle = setInterval(function(){ //Y vuelve a iniciar
+                        if(myalert.find(":hover").length==0){
+                            myalert.fadeTo(500, 0).slideUp(500, function(){
+                                myalert.remove();
+                                clearInterval( bucle );
+                            });
+                        }
+                    }, 1000);
+                }, this), tiempo);
+            });
+
+
+             function create_alert(mensaje, tipo_alerta, div_padre, emergente,tiempo){
+
+                var padre="#" + div_padre;
+                var cad='';
+                switch(tipo_alerta) {
+                    case "EXITO":
+                        var msj_aux='<b>Success!</b>';
+                        var tipo= 'success';
+                        var icono='ok-sign';
+                        break;
+                    case "ERROR":
+                        var msj_aux= '<b>Error.</b>';
+                        var tipo= 'danger';
+                        var icono='remove-sign';
+                        break;
+                    case "INFO":
+                        var msj_aux='<b>Info</b>';
+                        var tipo= 'info';
+                        var icono='info-sign';
+                        break;
+                }
+
+                if(emergente){
+                    cad+= '<div class="alert alert-'+ tipo+ '" style="margin: 0px 2% 2%;">\
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                    cad+= '<strong style="font-size: 20px;"><i  class="glyphicon glyphicon-'+ icono+ '"></i>  ' + msj_aux + '</strong><br/>';
+                     cad+= '<div style="margin-left:5%;"><ul>' + mensaje + '</ul></div>';
+                    $(cad).appendTo(padre).trigger('showalert',[tiempo]);
+                }else{
+                    cad+= '<div style="margin: 0px 2% 2%;" class="alert alert-'+ tipo+ '"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> \
+                            ';
+                    cad+= '<strong style="font-size: 15px;"><i  class="glyphicon glyphicon-'+ icono+ '"></i>  ' + msj_aux + '</strong><br/>';
+                    cad+= '<div style="margin-left:5%;"><ul>' + mensaje + '</ul></div></div>';
+                    document.getElementById(div_padre).innerHTML=cad;
+                }
+             }
+
+        </script>
     </head>
     <body class="no-skin">
         <div class="jumbotron text-center">

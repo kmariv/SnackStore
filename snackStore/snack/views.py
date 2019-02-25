@@ -35,14 +35,8 @@ def verifyActive(userLog):
 	else:
 		return None
 
-@api_view(['POST'])
-def all_snacks(request,format=None):
-	if request.method == 'POST':
-		snack = Snack.objects.all()
-		serializer = SnackSerializer(snack, many=True)
-		return Response(serializer.data)
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def snack_list(request,format = None):
 	userLog = verifyUserLog(request.session)
 
@@ -51,7 +45,10 @@ def snack_list(request,format = None):
 		serializer = SnackSerializer(snack, many=True)
 		return Response(serializer.data)
 
-	elif request.method == 'POST':
+
+@api_view(['POST'])
+def new_snack(request,format=None):
+	if request.method == 'POST':
 		if verifyActive(userLog) is not None:
 			try:
 				user = User.objects.get(pk=userLog['user_id'])
@@ -69,8 +66,6 @@ def snack_list(request,format = None):
 				return Response(status=status.HTTP_401_UNAUTHORIZED)
 		else:
 			return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-
 
 
 
@@ -195,10 +190,15 @@ def purchase(request, snack_id, format = None):
 
 @api_view(['GET', 'POST'])
 def user_list(request,format = None):
+	userLog = verifyUserLog(request.session)
+
 	if request.method == 'GET':
-		user = User.objects.all()
-		serializer = UserSerializer(user, many=True)
-		return Response(serializer.data)
+		if verifyActive(userLog) is not None:
+			user = User.objects.all()
+			serializer = UserSerializer(user, many=True)
+			return Response(serializer.data)
+		else:
+			return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 	elif request.method == 'POST':
 		copy_validated_data = request.data.copy()
@@ -266,6 +266,9 @@ def login(request,format=None):
 	#print request.user
 	#request.user = authenticate(request, username='aaaa', password='X')
 	#print request.user
+	if 'password' not in request.data.keys():
+		res = {"code": 400, "message": "Password is required"}
+		return Response(data=json.dumps(res), status=status.HTTP_200_OK)
 
 	if check_password(str(request.data['password']), user.password) is False or is_auth is None:
 		res = {"code": 400, "message": "Password doesn't match with username or User doesn't exist"}
@@ -280,3 +283,13 @@ def login(request,format=None):
 		dict_token = json.dumps(dict_token)
 		request.session['userLog'] = dict_token
 		return Response(serializer.data)
+
+
+@api_view(['GET'])
+def check_login(request):
+	userLog = verifyUserLog(request.session)
+
+	if userLog is not None:
+		return Response(userLog)
+	else:
+		return Response(status=status.HTTP_401_UNAUTHORIZED)

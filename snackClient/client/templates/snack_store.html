@@ -2,71 +2,160 @@
 {% load staticfiles %}
 
 {%block content%}
-<table id="dt_snacks" class="display table-dark table-striped" style="width:100%">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Extn.</th>
-            <th>Start date</th>
-            <th>Salary</th>
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Extn.</th>
-            <th>Start date</th>
-            <th>Salary</th>
-        </tr>
-    </tfoot>
-</table>
+<div class="row" >
+	<div class="col-sm-12" id="div_error">
+	</div>
+</div>
+<!--<div class="row">
+	<div class="col-sm-12">
+	<form id="form_login" style="display:none;">
+		<div class="col-sm-1">
+			<label>Username:</label> 
+		</div>
+		<div class="col-sm-1">
+			<input type="text" name="username" value="">
+		</div>
+		<div class="col-sm-1">
+			<label>Password:</label>
+		</div>
+		<div class="col-sm-1">
+			<input type="password" name="password" value="">
+		</div>
+		<div class="col-sm-2">
+			<button class="btn btn-xs btn-primary" type="button" style="margin-top: 1%;" id="btn_login">Sign in</button>
+		</div>
+	</form>
+
+		<div class="col-sm-6" id="div_logged" style="display:none;">
+			<i class="fas fa-user-check green bigger-125"></i> User: <span id="user_logged"></span>
+		</div>
+	</div>
+</div>-->
+<hr>
+<div class="row" style="margin-top:1%">
+	<div class="col-sm-12">
+		<table id="dt_snacks" class="display" style="width:100%">
+		    <thead>
+		        <tr>
+		            <th>Snack_id</th>
+		            <th>Name</th>
+		            <th>Price</th>
+		            <th>Stock quantity</th>
+		            <th>Popularity</th>
+		        </tr>
+		    </thead>
+		</table>
+	</div>
+</div>
 {%endblock%}
 
 {%block addExtraScript%}
 <script type="text/javascript">
-	var editor; // use a global for the submit and return data rendering in the examples
- 	var dt_snacks= null;
 
 	$(document).ready(function() {
-		holi();
-		console.log('AAAAAAAAA');
+		//check_login();
 		$('#dt_snacks').DataTable( {
-		  //"ajax": "http://localhost:8000/api/snack/?format=json"
-		  "ajax": {
-					"url": "http://localhost:8000/api/snack/?format=json",
+		  		//"ajax": "http://localhost:8000/api/snack/?format=json"
+		  		"ajax": {
+					"url": "http://localhost:8000/api/snacks/",
 					"type": "GET",
-					//"contentType": 'application/json',
-					"dataType": 'jsonp', 
-					//"data":  function( d ) { },
-				   /* "dataSrc": function ( jsonp ) {
-				    	console.log('ent');
-						
-						return json;
-					},*/
-				}
+				    "dataSrc": function ( json ) {
+				    	var tabla=$('#dt_snacks').DataTable();
+				    	
+				    	for ( var i=0; i<json.length ; i++ ) {
+					    		
+				    		var fila=tabla.row.add([	
+													json[i]['snack_id'],			
+													json[i]['name'],	
+													json[i]['price'],
+													json[i]['stock_quantity'],
+													json[i]['popularity']					
+													
+							]).draw();
+
+				    	}
+						//return json;
+					},
+				},
+			    "scrollX":       	true,
+			    "scrollCollapse": 	true,
+			    "paging":         	true,
+			    "ordering":    		false, 
+			    "columnDefs": [
+			    	{
+			            "targets": [0],
+			            "visible": false,
+		                "searchable": false,
+		                "orderable": true   
+		            }
+			    ]
 
 		} );
 
-		function holi(){
+		/*
+		function check_login(){
 
-			$.ajax({
-			    url : "http://localhost:8000/api/snack/",
-			    dataType: 'json',
-			    type: "GET",
-			   success: function(response) {
-			        console.log('callback success');
-			    }
-             
-			});
+			$.ajax({ 
+	            type: "GET",
+	            dataType: "json",
+	            url: "http://localhost:8000/api/checklogin/",
+	            success: function(data){        
+	                $("#div_logged").show();
+				    $("#form_login").hide();
+	            },
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+				      var code_error = XMLHttpRequest.status;
+				      if(code_error == 401){
+				      	$("#div_logged").hide();
+				      	$("#form_login").show();
+				      }
+
+				}
+	        });
+
 		}
+		
+		$("#btn_login").on('click',function(){
+			var form = new FormData($("#form_login")[0]);
+			$.ajax({ 
+	            type: "POST",
+	            url: "http://localhost:8000/api/login/",
+	            contentType: false,
+	            processData: false,
+	            data: form,
+	            success: function(data){     
+	            	if(typeof(data) != "object")
+	            		json = JSON.parse(data);
+	            	else 
+	            		json = data;
 
-		 
-	
+	               if(json['message']==undefined){
+	               		check_login();
+	               }else{
+	               		create_alert(
+			      				'<li><strong>Error '+ json['code'] +'</strong>'+json['message']+'</li>'
+			      				,'ERROR'
+			      				,'div_error'
+			      				,true
+			      				,2000
+			      			);
+	               }
+	            },
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+				      var code_error = XMLHttpRequest.status;
+				      console.log(XMLHttpRequest.responseText);
+				      create_alert(
+				      				'<li><strong>Error '+ code_error +'</strong> User not found </li>'
+				      				,'ERROR'
+				      				,'div_error'
+				      				,true
+				      				,2000
+				      			);
 
+				}
+	        });
+		});
+		*/
 	 
 	} );
 </script>

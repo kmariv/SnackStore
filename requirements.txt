@@ -1,6 +1,7 @@
 bcrypt==3.1.6
 cffi==1.12.1
 Django==1.11
+django-cors-headers==2.4.0
 django-filter==2.1.0
 django-widget-tweaks==1.4.1
 djangorestframework==3.9.1

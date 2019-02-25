@@ -10,11 +10,6 @@ class SnackSerializer(serializers.HyperlinkedModelSerializer):
 			raise serializers.ValidationError("The snack should have a name")
 		return data
 
-	def to_representation(self, snack):
-		data = super(SnackSerializer, self).to_representation(snack)
-		
-		return  data
-
 	class Meta:
 		model = Snack
 		fields = ('snack_id','name','stock_quantity','price','popularity')

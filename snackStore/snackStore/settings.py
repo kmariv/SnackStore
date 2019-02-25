@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'snack',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'snackStore.urls'
@@ -93,6 +96,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
@@ -134,6 +138,7 @@ PASSWORD_HASHERS = (
 
 DEFAULT_CONTENT_TYPE = 'application/json'
 AUTH_PROFILE_MODULE = 'snack.User'
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

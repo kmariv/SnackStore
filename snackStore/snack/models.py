@@ -14,6 +14,9 @@ class Snack(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	class Meta:
+		ordering = ('name',)
+
 class User(models.Model):
 	user_id 		= models.AutoField(primary_key=True)
 	username 		= models.CharField('Username',max_length=50,unique=True,blank=False)
