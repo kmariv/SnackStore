@@ -22,7 +22,7 @@ class SnackViewSet(viewsets.ModelViewSet):
 	#filterset_class = SnackFilter
 	filter_backends = (f.SearchFilter, f.OrderingFilter)
 	filterset_fields = ('name', 'stock_quantity',)
-	ordering_fields = ('name','stock_quantity','price',)
+	ordering_fields = ('name','popularity','price',)
 	search_fields = ('name',)
 
 	def get_queryset(self):

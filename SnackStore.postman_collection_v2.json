@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "aee74ebc-7be8-4c68-b1a1-55218632169d",
 		"name": "SnackStore",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -45,19 +45,7 @@
 						}
 					]
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/user/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"user",
-						""
-					]
-				},
+				"url": "http://localhost:8000/api/user/",
 				"description": "Creating an user "
 			},
 			"response": []
@@ -94,19 +82,7 @@
 						}
 					]
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/login/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"login",
-						""
-					]
-				},
+				"url": "http://localhost:8000/api/login/",
 				"description": "Login to the store."
 			},
 			"response": []
@@ -143,19 +119,7 @@
 						}
 					]
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/login/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"login",
-						""
-					]
-				}
+				"url": "http://localhost:8000/api/login/"
 			},
 			"response": []
 		},
@@ -168,19 +132,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/getSnacks/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"getSnacks",
-						""
-					]
-				}
+				"url": "http://localhost:8000/api/getSnacks/"
 			},
 			"response": []
 		},
@@ -221,19 +173,7 @@
 						}
 					]
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/newSnack/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"newSnack",
-						""
-					]
-				}
+				"url": "http://localhost:8000/api/newSnack/"
 			},
 			"response": []
 		},
@@ -246,20 +186,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/snack/2/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"snack",
-						"2",
-						""
-					]
-				}
+				"url": "http://localhost:8000/api/snack/2/"
 			},
 			"response": []
 		},
@@ -278,20 +205,7 @@
 						}
 					]
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/snack/2/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"snack",
-						"2",
-						""
-					]
-				}
+				"url": "http://localhost:8000/api/snack/2/"
 			},
 			"response": []
 		},
@@ -317,20 +231,7 @@
 						}
 					]
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/snack/2/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"snack",
-						"2",
-						""
-					]
-				}
+				"url": "http://localhost:8000/api/snack/2/"
 			},
 			"response": []
 		},
@@ -343,19 +244,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/pricelog/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"pricelog",
-						""
-					]
-				}
+				"url": "http://localhost:8000/api/pricelog/"
 			},
 			"response": []
 		},
@@ -381,20 +270,7 @@
 						}
 					]
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/purchase/2/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"purchase",
-						"2",
-						""
-					]
-				}
+				"url": "http://localhost:8000/api/purchase/2/"
 			},
 			"response": []
 		},
@@ -407,19 +283,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:8000/api/purchase/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"purchase",
-						""
-					]
-				}
+				"url": "http://localhost:8000/api/purchase/"
 			},
 			"response": []
 		},

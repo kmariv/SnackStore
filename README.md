@@ -3,7 +3,8 @@
 ** IMPORTANT:
 
 	--> You should have python 2.7.6 in your OS. 
-	--> Create an environment in Linux OS.
+	--> Create an environment in Linux OS (Preferably Linux Mint )
+	--> Session duration: 1 minute
 
 ** Install the environment:
 
@@ -60,3 +61,27 @@
 	Bootstrap 4
 	
 	
+** HOW TO TEST IT:
+
+	
+	Import SnackStore.postman_collection.json in POSTMAN and prove the collection. 
+
+	Also, you can browse into the page: 
+
+			http://localhost:8000/api/getSnacks/
+
+	And prove the list of snacks ;) 
+
+
+	----> YOU HAVE TO CREATE APPLAUDO USER 
+	
+		User: applaudo 
+		Pass: applaudo
+
+		--- Cliente (no-admin account)
+
+		User: applaudo_client
+		Pass: applaudo
+
+
+I hope you like it!
