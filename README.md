@@ -78,7 +78,7 @@
 		User: applaudo 
 		Pass: applaudo
 
-		--- Cliente (no-admin account)
+		--- Client (no-admin account)
 
 		User: applaudo_client
 		Pass: applaudo
